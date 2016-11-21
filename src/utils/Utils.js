@@ -1,6 +1,6 @@
 
 export function uniqueArray_Store(products) {
-    console.log("products =", products);
+    //console.log("products =", products);
     let boolValidation = false;
     let arrFinal = [];
     let element = {
@@ -43,7 +43,7 @@ export function uniqueArray_Store(products) {
 
 /** Test mock **/
 export function test_uniqueArray_store() {
-    console.log("test");
+    //console.log("test");
     let mock = [
         {
             "isbn":"c8fabf68-8374-48fe-a7ea-a00ccd07afff",
@@ -75,5 +75,5 @@ export function test_uniqueArray_store() {
     }
 
 
-    console.log( (res_th == res_pr) ? "test true" : " test false" );
+    //console.log( (res_th == res_pr) ? "test true" : " test false" );
 }
