@@ -1,0 +1,32 @@
+.img-component {
+  //border: 5px solid red;
+    #img-cpn {
+      width: 260px;
+      height: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  @media screen and (min-width: 1200px) {
+    #img-cpn {
+      width: 325px;
+      height: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left:40px;
+      padding-right:40px;
+    }
+  }
+
+    @media screen and (max-width: 990px) {
+      #img-cpn {
+        width: 260px;
+        height: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }

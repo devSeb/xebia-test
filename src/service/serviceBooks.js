@@ -4,24 +4,17 @@
 function loadDistantBook(BASE_URL) {
     return new Promise(function (resolve, reject) {
 
-        $( document ).ready(function() {
-            //console.log( "ready!" );
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function (event) {
+            resolve( JSON.parse(xhr.responseText));
+            //console.log("=> ", xhr.responseText);
+        };
+        xhr.onerror = function (err) {
+            reject(null);
+        };
+        xhr.open('GET', BASE_URL, true);
+        xhr.send(null);
 
-            $.ajax({
-                url: BASE_URL,
-                type: "get",
-                success: function(response) {
-                    //console.log("response  = > ", response);
-                    if ( response  ) {
-                        resolve(response);
-                    }
-                },
-                error: function(xhr) {
-                    console.log("xhr = ", xhr);
-                    reject(xhr);
-                }
-            });
-        });
     });
 }
 

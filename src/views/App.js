@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 /** Components **/
 import NavBar from '../components/NavBar/NavBar';
+import Footer from '../components/Footer/Footer';
 import Products from '../components/Products/Products';
 
 /** Service **/
@@ -99,20 +100,10 @@ class App extends Component {
 
                     </section>
 
-
                 </div>
 
-                <footer>
-                    <nav className="navbar navbar-default navbar-fixed-bottom">
-                        <div className="container">
-                            <div className="navbar-header">
-                            <span className="navbar-text">
-                                2016, <a href="#">Xebia-Test</a>
-                            </span>
-                            </div>
-                        </div>
-                    </nav>
-                </footer>
+                <Footer />
+
 
             </div>
         );

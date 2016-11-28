@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 
 /** Components **/
 import NavBar from '../components/NavBar/NavBar';
+import Footer from '../components/Footer/Footer';
 import Products from '../components/Products/Products';
-
+import Image from '../components/Image/Image';
 /** Service **/
 import * as serviceOffers from '../service/serviceOffers';
 
 /** Utils **/
-import * as utilsStore from '../Utils/Utils';
-import * as utilsOffer from '../Utils/UtilsOffers';
+import  UtilsServiceArray from '../Utils/Utils';
+import UtilsServiceOffers from '../Utils/UtilsOffers';
 
 /** Reducer **/
 import * as storeActions from '../redux/actions/storeActions';
@@ -44,7 +45,7 @@ class StoreProducts extends Component {
 
     retrieveIsbnProducts(products) {
         let obj = [];
-        //console.log("products = ", products);
+        //console.log("products = ", JSON.stringify(products));
         if ( products ) {
             for ( let product of products ) {
                 obj.push(product.isbn);
@@ -65,7 +66,7 @@ class StoreProducts extends Component {
         if ( isbn.length > 0 ) {
             serviceOffers.search_offers(isbn)
                 .then(function ( data) {
-                    //console.log("view _ data ", data);
+                    //console.log("view _ data ", JSON.stringify(data));
                     if ( data !== null) {
 
                         /** Add result on the reducer  **/
@@ -94,9 +95,13 @@ class StoreProducts extends Component {
     render() {
         let arrFinal = [];
         let priceTot = 0;
-        if ( this.props.store.length > 0  && this.state.offers) {
-            arrFinal = utilsStore.uniqueArray_Store(this.props.store);
-            priceTot = utilsOffer.defineOffers(this.props.store, this.state.offers);
+        var utilsServiceArray;
+        var utilsServiceOffers;
+        if (this.props.store.length > 0 && this.state.offers) {
+            utilsServiceArray = new UtilsServiceArray();
+            utilsServiceOffers = new UtilsServiceOffers();
+            arrFinal = utilsServiceArray.arrayWithoutDuplicate(this.props.store);
+            priceTot = utilsServiceOffers.defineBestOffers(this.props.store, this.state.offers);
         }
 
 
@@ -132,15 +137,14 @@ class StoreProducts extends Component {
                                   return (
                                       <div key={index} className="margin-top-20">
 
-                                          <img src={item.cover} width="80" height="100" />
-                                          <span className="margin-left-80">{"product : " + item.title}</span>
-                                          <span className="margin-left-30" > { "qte = " + item.qte }</span>
+                                          <img src={item.cover} width={"80"} height={"100"} />
+                                          <span className="margin-left-80">{ item.title}</span>
+                                          <span className="margin-left-30" > { item.qte }</span>
 
                                       </div>
                                     );
                                 })}
                             </article>
-
 
                         </section>
                     }
@@ -152,18 +156,7 @@ class StoreProducts extends Component {
 
                 </div>
 
-                <footer>
-                    <nav className="navbar navbar-default navbar-fixed-bottom">
-                        <div className="container">
-                            <div className="navbar-header">
-                            <span className="navbar-text">
-                                2016, <a href="#">Xebia-Test</a>
-                            </span>
-                            </div>
-                        </div>
-                    </nav>
-                </footer>
-
+                <footer />
             </div>
         );
     }
