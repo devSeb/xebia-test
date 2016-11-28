@@ -10,6 +10,8 @@ Install webpack-dev-server  => npm install webpack-dev-server@^1.10.1 -g    Or  
 npm install </br>
 npm run start ( reference to package.json) </br>
 
+## How to test the project
+npm run test </br>
 
 ## Link
 https://github.com/devSeb/xebia-test
